@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Hotheme</title>
+  <title>JS Bin</title>
   
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -20,17 +20,22 @@
       return luma < 90;
     }
     
-    const roomImage = "https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?cs=srgb&dl=pexels-engin-akyurt-1579253.jpg&fm=jpg";
-    //const roomImage = "https://images.pexels.com/photos/3754595/pexels-photo-3754595.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";    
-    //const roomImage = "https://images.pexels.com/photos/833045/pexels-photo-833045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
-    //const roomImage = "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
-    //const roomImage = "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
-    //const roomImage = "https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
-    Vibrant.from(roomImage).getPalette(function(err, palette) {
+    const roomImage1 = "https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?cs=srgb&dl=pexels-engin-akyurt-1579253.jpg&fm=jpg";
+    const roomImage2 = "https://images.pexels.com/photos/3754595/pexels-photo-3754595.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";    
+    const roomImage3 = "https://images.pexels.com/photos/833045/pexels-photo-833045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+    const roomImage4 = "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+    const roomImage5 = "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+    const roomImage6 = "https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+    
+    
+    [roomImage1, roomImage2, roomImage3,
+     roomImage4,roomImage5, roomImage6].forEach(r => {
+      
+    Vibrant.from(r).getPalette(function(err, palette) {
     
 
           var img = document.createElement('img');
-          img.src = roomImage;
+          img.src = r;
           img.style.width = "400px";
           img.style.margin = "1rem";
           document.body.appendChild(img);
@@ -46,7 +51,9 @@
           div.style.width = "400px";
           div.style.backgroundColor = arrayToRgb(...palette[key].rgb);
           document.body.appendChild(div);
-    });   
+    });
+});
+    
 });
     
     
