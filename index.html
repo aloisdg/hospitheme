@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Hotheme</title>
+  
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex flex-col items-center">
+  
+  <script src="https://unpkg.com/node-vibrant@3.1.5/dist/vibrant.min.js"></script>  
+  <script>
+    function arrayToRgb(r, g, b) {
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    
+    function isDark(r, g, b) {
+      const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+      return luma < 90;
+    }
+    
+    const roomImage = "https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?cs=srgb&dl=pexels-engin-akyurt-1579253.jpg&fm=jpg";
+    //const roomImage = "https://images.pexels.com/photos/3754595/pexels-photo-3754595.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";    
+    //const roomImage = "https://images.pexels.com/photos/833045/pexels-photo-833045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+    //const roomImage = "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+    //const roomImage = "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+    //const roomImage = "https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+    Vibrant.from(roomImage).getPalette(function(err, palette) {
+    
+
+          var img = document.createElement('img');
+          img.src = roomImage;
+          img.style.width = "400px";
+          img.style.margin = "1rem";
+          document.body.appendChild(img);
+    
+      Object.keys(palette).forEach(key => {
+          var div = document.createElement('div');
+          div.textContent = key;
+          if (isDark(...palette[key].rgb)) {
+            div.style.color = "white";
+          }
+          div.style.padding = "1rem";
+          div.style.margin = "1rem";
+          div.style.width = "400px";
+          div.style.backgroundColor = arrayToRgb(...palette[key].rgb);
+          document.body.appendChild(div);
+    });   
+});
+    
+    
+  // Promise
+  //Vibrant.from('path/to/image').getPalette().then(function(palette) {});
+  // Or
+  //var v = new Vibrant('/path/to/image', opts);
+  // ... same as in node.js
+  </script>
+</body>
+</html>
