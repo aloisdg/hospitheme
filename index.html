@@ -1,62 +1,145 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>JS Bin</title>
-  
+  <title>Hospitheme</title>
+
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+
+  <style>
+    .montserrat {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .blur {
+      backdrop-filter: blur(7px);
+    }
+  </style>
 </head>
+
 <body class="flex flex-col items-center">
-  
-  <script src="https://unpkg.com/node-vibrant@3.1.5/dist/vibrant.min.js"></script>  
+
+  <header id="header" class="montserrat mb-6 text-5xl w-full bg-purple-800 text-white text-center p-2">
+    Hospitheme
+  </header>
+
+  <main class="flex flex-col items-center justify-center  max-w-xl">
+    <section class="relative mb-6 flex items-center justify-center h-96 w-full bg-gray-500">
+      <img id="seed" class="object-contain h-96 w-full"
+        src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+
+      <button id="upload" type="button"
+        class="blur absolute text-xl border border-white text-white hover:bg-gray-200 hover:text-gray-800 rounded px-4 py-2">upload
+        picture</button>
+    </section>
+
+    <section id="paletteContainer" class="mb-6 flex items-center justify-center">
+      <div class="p-1 m-1 w-20 h-12" style="background-color: rgb(148, 76, 65);"></div>
+      <div class="p-1 m-1 w-20 h-12" style="background-color: rgb(251, 248, 236);"></div>
+      <div class="p-1 m-1 w-20 h-12 text-white" style="background-color: rgb(28, 4, 12);"></div>
+      <div class="p-1 m-1 w-20 h-12" style="background-color: rgb(152, 110, 101);"></div>
+      <div class="p-1 m-1 w-20 h-12" style="background-color: rgb(212, 192, 180);"></div>
+      <div class="p-1 m-1 w-20 h-12 text-white" style="background-color: rgb(76, 56, 60);"></div>
+    </section>
+
+    <section class="mb-6 bg-gray-200 w-full">
+      <pre>
+        <code>
+          .accent {
+            background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
+            color: <span id="themeColor">black</span>;
+          }
+      
+          .background {
+            background-color: white;
+          }
+        </code>
+      </pre>
+    </section>
+
+    <button id="copy" type="button"
+      class="mb-6 bg-blue-600 text-gray-200 text-xl rounded hover:bg-blue-500 px-6 py-3 focus:outline-none">copy
+      snippet</button>
+  </main>
+
+  <script src="https://unpkg.com/node-vibrant@3.1.5/dist/vibrant.min.js"></script>
   <script>
     function arrayToRgb(r, g, b) {
       return `rgb(${r}, ${g}, ${b})`;
     }
-    
+
     function isDark(r, g, b) {
       const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
       return luma < 90;
     }
-    
-    const roomImage1 = "https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?cs=srgb&dl=pexels-engin-akyurt-1579253.jpg&fm=jpg";
-    const roomImage2 = "https://images.pexels.com/photos/3754595/pexels-photo-3754595.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";    
-    const roomImage3 = "https://images.pexels.com/photos/833045/pexels-photo-833045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
-    const roomImage4 = "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
-    const roomImage5 = "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
-    const roomImage6 = "https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
-    
-    
-    [roomImage1, roomImage2, roomImage3,
-     roomImage4,roomImage5, roomImage6].forEach(r => {
-      
-    Vibrant.from(r).getPalette(function(err, palette) {
-    
+  </script>
+  <script>
+    function loadFromImg(img) {
+      Vibrant.from(img).getPalette(function (err, palette) {
 
-          var img = document.createElement('img');
-          img.src = r;
-          img.style.width = "400px";
-          img.style.margin = "1rem";
-          document.body.appendChild(img);
-    
-      Object.keys(palette).forEach(key => {
-          var div = document.createElement('div');
-          div.textContent = key;
-          if (isDark(...palette[key].rgb)) {
-            div.style.color = "white";
+        Object.keys(palette).forEach((key, i) => {
+          const child = paletteContainer.children[i];
+          const rgb = palette[key].rgb;
+          const isItDark = isDark(...rgb);
+          if (i === 0) {
+            header.style.backgroundColor = arrayToRgb(...rgb);
+            themeBackground.textContent = arrayToRgb(...rgb);
+            themeColor.textContent = isItDark ? 'white' : 'black';
           }
-          div.style.padding = "1rem";
-          div.style.margin = "1rem";
-          div.style.width = "400px";
-          div.style.backgroundColor = arrayToRgb(...palette[key].rgb);
-          document.body.appendChild(div);
-    });
-});
-    
-});
-    
-    
+          // div.textContent = key;
+          child.classList.toggle("text-white", isItDark);
+          child.style.backgroundColor = arrayToRgb(...palette[key].rgb);
+        });
+      });
+    }
+
+    function generatePreviewData(file, callback) {
+      const fileReader = new FileReader();
+      fileReader.addEventListener('load', event => {
+        if (callback && typeof callback === 'function') {
+          callback(fileReader.result);
+        }
+      });
+      fileReader.readAsDataURL(file);
+    }
+
+    upload.onclick = function () {
+      const input = document.createElement("input");
+      input.setAttribute("type", "file");
+      input.onchange = e => {
+        generatePreviewData(input.files[0], data => {
+          seed.title = input.files[0].name;
+          seed.src = data;
+        });
+      }
+
+      input.click();
+    };
+
+    seed.addEventListener('load', () => loadFromImg(seed));
+
+    //// const roomImage1 =
+    //"https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?cs=srgb&dl=pexels-engin-akyurt-1579253.jpg&fm=jpg";
+    //// const roomImage2 =
+    //"https://images.pexels.com/photos/3754595/pexels-photo-3754595.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+    //// const roomImage3 =
+    //"https://images.pexels.com/photos/833045/pexels-photo-833045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+    //// const roomImage4 =
+    //"https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+    //// const roomImage5 =
+    //"https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+    //// const roomImage6 =
+    //"https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+
+
+  // [roomImage1, roomImage2, roomImage3,
+  // roomImage4, roomImage5, roomImage6].forEach(r => loadFromUrl(r));
+
+
   // Promise
   //Vibrant.from('path/to/image').getPalette().then(function(palette) {});
   // Or
@@ -64,4 +147,5 @@
   // ... same as in node.js
   </script>
 </body>
+
 </html>
