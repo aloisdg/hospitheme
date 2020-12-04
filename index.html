@@ -27,7 +27,7 @@
     Hospitheme
   </header>
 
-  <main class="flex flex-col items-center justify-center  max-w-xl">
+  <main class="flex flex-col items-center justify-center w-full sm:max-w-xl">
     <section class="relative mb-6 flex items-center justify-center h-96 w-full bg-gray-500">
       <img id="seed" class="object-contain h-96 w-full"
         src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
@@ -37,26 +37,26 @@
         picture</button>
     </section>
 
-    <section id="paletteContainer" class="mb-6 flex items-center justify-center">
-      <div class="p-1 m-1 w-20 h-12" style="background-color: rgb(148, 76, 65);"></div>
-      <div class="p-1 m-1 w-20 h-12" style="background-color: rgb(251, 248, 236);"></div>
-      <div class="p-1 m-1 w-20 h-12 text-white" style="background-color: rgb(28, 4, 12);"></div>
-      <div class="p-1 m-1 w-20 h-12" style="background-color: rgb(152, 110, 101);"></div>
-      <div class="p-1 m-1 w-20 h-12" style="background-color: rgb(212, 192, 180);"></div>
-      <div class="p-1 m-1 w-20 h-12 text-white" style="background-color: rgb(76, 56, 60);"></div>
+    <section id="paletteContainer" class="mb-6 grid grid-cols-6 w-full h-12">
+      <div class="p-1 m-1" style="background-color: rgb(148, 76, 65);"></div>
+      <div class="p-1 m-1" style="background-color: rgb(251, 248, 236);"></div>
+      <div class="p-1 m-1 text-white" style="background-color: rgb(28, 4, 12);"></div>
+      <div class="p-1 m-1" style="background-color: rgb(152, 110, 101);"></div>
+      <div class="p-1 m-1" style="background-color: rgb(212, 192, 180);"></div>
+      <div class="p-1 m-1 text-white" style="background-color: rgb(76, 56, 60);"></div>
     </section>
 
-    <section class="mb-6 bg-gray-200 w-full">
-      <pre>
+    <section class="mb-6 bg-gray-200 w-full overflow-x-auto">
+      <pre class="pl-6">
         <code>
-          .accent {
-            background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
-            color: <span id="themeColor">black</span>;
-          }
-      
-          .background {
-            background-color: white;
-          }
+.accent {
+  background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
+  color: <span id="themeColor">black</span>;
+}
+
+.background {
+  background-color: white;
+}
         </code>
       </pre>
     </section>
