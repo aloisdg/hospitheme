@@ -33,6 +33,7 @@ h1 {
 .page-background {
   background-color: color-mod(var(--background-body) lightness(-10%));
   box-shadow: none;
+  color: var(--text-main) !important;
 }
 
 .durandal-wrapper {
@@ -225,7 +226,7 @@ section.basket.js-basket.basket-moving {
 .room-details-content-beds-item,
 .room-filters,
 .room-details-content-options {
-  background-color: #f2f2f2 !important;
+  background-color: var(--background-alt) !important;
 }
 
 #ui-datepicker-div {
