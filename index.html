@@ -38,7 +38,14 @@
         class="blur absolute text-xl border border-white text-white hover:bg-gray-200 hover:text-gray-800 rounded px-4 py-2">upload
         picture</button>
     </section>
-
+    <section id="themeSelection" class="mb-6 flex items-center justify-center">
+      <form id="theme-form">
+        <input type="radio" value="auto" checked="" name="theme" id="theme-dark">
+        <label for="theme-dark">Dark theme 🌙</label>
+        <input type="radio" value="light" name="theme" id="theme-light">
+        <label for="theme-light">Light theme ☀</label>
+      </form>
+    </section>
     <section id="paletteContainer" class="mb-6 grid grid-cols-6 w-full h-12">
       <div class="p-1 m-1" style="background-color: rgb(148, 76, 65);"></div>
       <div class="p-1 m-1" style="background-color: rgb(251, 248, 236);"></div>
