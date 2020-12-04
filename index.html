@@ -99,16 +99,14 @@
 
       <section id="codeContainer" class="bg-gray-200 w-full overflow-auto h-64">
         <pre class="pl-6">
-          <code id="code">
-.accent {
+          <code id="code">.accent {
   background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
   color: <span id="themeColor">black</span>;
 }
 
 .background {
   background-color: white;
-}
-          </code>
+}</code>
         </pre>
       </section>
     </section>
@@ -175,7 +173,6 @@
     }
 
     function defineTheme(vibrant, themeBackground, themeBackgroundAlt, themeColor) {
-      // const vibrantRed = vibrant.hsl.
       const font = getFont();
 
       const theme = `
@@ -280,16 +277,6 @@ ${font ? `--font: ${font.css}` : ""};
     //// const roomImage6 =
     //"https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
 
-
-  // [roomImage1, roomImage2, roomImage3,
-  // roomImage4, roomImage5, roomImage6].forEach(r => loadFromUrl(r));
-
-
-  // Promise
-  //Vibrant.from('path/to/image').getPalette().then(function(palette) {});
-  // Or
-  //var v = new Vibrant('/path/to/image', opts);
-  // ... same as in node.js
   </script>
 </body>
 
