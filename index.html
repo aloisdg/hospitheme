@@ -97,16 +97,16 @@
 
       <label class="block text-gray-700 font-light mb-2">Select color scheme:</label>
       <div class="flex">
-        <div class="flex items-center mb-2 mr-4">
-          <input type="radio" id="themeLight" name="colorScheme"
-            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
-          <label for="themeLight" class="text-gray-600">Light ☀</label>
-        </div>
-        <div class="flex items-center mb-2">
-          <input type="radio" id="themeDark" name="colorScheme"
-            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
-          <label for="themeDark" class="text-gray-600">Dark 🌙</label>
-        </div>
+          <div class="flex items-center mb-2 mr-4">
+              <input type="radio" id="themeLight" name="colorScheme" 
+              class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked onchange="reloadTheme()">
+              <label for="themeLight" class="text-gray-600">Light ☀</label>
+          </div>
+          <div class="flex items-center mb-2">
+              <input type="radio" id="themeDark" name="colorScheme" 
+              class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" onchange="reloadTheme()">
+              <label for="themeDark" class="text-gray-600">Dark 🌙</label>
+          </div>
       </div>
 
       <label class="block text-gray-700 font-light mb-2">Select booking engine style:</label>
@@ -137,17 +137,23 @@
 
     </section>
 
-    <section id="codeContainer" class="mb-6 bg-gray-200 w-full overflow-auto h-48">
-      <pre class="pl-6">
-        <code id="code">.accent {
+    <section id="outputContainer" class="mb-6 w-full">
+      <h2 class="font-bold text-xl mb-2 text-gray-700">Output</h2>
+
+      <section id="codeContainer" class="bg-gray-200 w-full overflow-auto h-64">
+        <pre class="pl-6">
+          <code id="code">
+.accent {
   background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
   color: <span id="themeColor">black</span>;
 }
 
 .background {
   background-color: white;
-}</code>
-      </pre>
+}
+          </code>
+        </pre>
+      </section>
     </section>
 
     <button id="copy" type="button"
@@ -273,6 +279,11 @@ ${font ? `--font: ${font.css}` : ""};
       });
       fileReader.readAsDataURL(file);
     }
+
+    function reloadTheme() {
+      if (seed != null)
+        loadFromImg(seed);
+    } 
 
     upload.onclick = function () {
       const input = document.createElement("input");
