@@ -147,7 +147,7 @@
           child.style.backgroundColor = arrayToRgb(...palette[key].rgb);
         });
         const themeBackground = arrayToRgb(...palette.Vibrant.rgb);
-        const themeColor = isItDark ? 'white' : 'black';
+        const themeColor = isDark(...palette.Vibrant.rgb) ? 'white' : 'black';
         defineTheme(palette.Vibrant, palette.LightMuted, themeBackground, themeColor);
       });
     }
