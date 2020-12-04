@@ -21,49 +21,6 @@
       backdrop-filter: blur(7px);
     }
   </style>
-  <style>
-    .slider {
-      background-color: #ccc;
-      -webkit-transition: .4s;
-      transition: .4s;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 2rem;
-      width: 2rem;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      -webkit-transition: .4s;
-      transition: .4s;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    input:checked+.slider {
-      background-color: #2196F3;
-    }
-
-    input:focus+.slider {
-      box-shadow: 0 0 1px #2196F3;
-    }
-
-    input:checked+.slider:before {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
-    }
-
-    .slider.round:before {
-      border-radius: 50%;
-    }
-  </style>
 </head>
 
 <body class="flex flex-col items-center">
@@ -113,12 +70,12 @@
       <div class="flex">
         <div class="flex items-center mb-2 mr-4">
           <input type="radio" id="themeClassic" name="beStyle"
-            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
+            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked onchange="reloadTheme()">
           <label for="themeClassic" class="text-gray-600">Classic ⚓</label>
         </div>
         <div class="flex items-center mb-2">
           <input type="radio" id="themeReloaded" name="beStyle"
-            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
+            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2"  onchange="reloadTheme()">
           <label for="themeReloaded" class="text-gray-600">Reloaded 🚀</label>
         </div>
       </div>
@@ -128,8 +85,8 @@
       <div class="flex">
         <select id="customFont" class="w-full border bg-white rounded px-3 py-2 outline-none">
           <option class="py-1" value="NoCustomFont" selected>No custom font</option>
-          <option class="py-1" value="LexendDeca">Font 2</option>
-          <option class="py-1" value="NerkoOne">Font 3</option>
+          <option class="py-1" value="LexendDeca">Lexend Deca</option>
+          <option class="py-1" value="NerkoOne">Nerko One</option>
           <option class="py-1" value="PressStart2P">Press Start 2P</option>
           <option class="py-1" value="Orbitron">Orbitron</option>
         </select>
@@ -236,7 +193,7 @@ ${font ? `--font: ${font.css}` : ""};
 `;
 
       const template = themeClassic.checked ? templateClassicCss : templateReloadedCss
-      code.textContent = `<style>` + font.link + theme + template + `</style >`;
+      code.textContent = `<style>` + (font ? font.link : "") + theme + template + `</style >`;
     }
 
     function loadFromImg(img) {
@@ -249,7 +206,7 @@ ${font ? `--font: ${font.css}` : ""};
             header.style.backgroundColor = arrayToRgb(...rgb);
             header.style.color = isTooLight(...rgb) ? 'black' : 'white';
           }
-          child.textContent = key;
+          // child.textContent = key;
           child.classList.toggle("text-white", isItDark);
           child.style.backgroundColor = arrayToRgb(...palette[key].rgb);
         });
