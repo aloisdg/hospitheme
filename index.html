@@ -104,6 +104,11 @@
       return luma < 90;
     }
 
+    function isTooLight(r, g, b) {
+      const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+      return luma > 150; // from 0 to 255
+    }
+
   </script>
   <script>
     function loadFromImg(img) {
@@ -115,10 +120,11 @@
           const isItDark = isDark(...rgb);
           if (i === 0) {
             header.style.backgroundColor = arrayToRgb(...rgb);
+            header.style.color = isTooLight(...rgb) ? 'black' : 'white';
             themeBackground.textContent = arrayToRgb(...rgb);
             themeColor.textContent = isItDark ? 'white' : 'black';
           }
-          // div.textContent = key;
+          //child.textContent = key;
           child.classList.toggle("text-white", isItDark);
           child.style.backgroundColor = arrayToRgb(...palette[key].rgb);
         });
