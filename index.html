@@ -48,9 +48,34 @@
       <div class="p-1 m-1 text-white" style="background-color: rgb(76, 56, 60);"></div>
     </section>
 
-    <section class="mb-6 bg-gray-200 w-full overflow-x-auto">
+    <section class="mb-6 bg-gray-200 w-full overflow-auto h-48">
       <pre class="pl-6">
         <code>
+.accent {
+  background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
+  color: <span id="themeColor">black</span>;
+}
+
+.background {
+  background-color: white;
+}
+
+.accent {
+  background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
+  color: <span id="themeColor">black</span>;
+}
+
+.background {
+  background-color: white;
+}
+.accent {
+  background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
+  color: <span id="themeColor">black</span>;
+}
+
+.background {
+  background-color: white;
+}
 .accent {
   background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
   color: <span id="themeColor">black</span>;
@@ -78,6 +103,7 @@
       const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
       return luma < 90;
     }
+
   </script>
   <script>
     function loadFromImg(img) {
