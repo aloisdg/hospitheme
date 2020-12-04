@@ -98,11 +98,13 @@
       <label class="block text-gray-700 font-light mb-2">Select color scheme:</label>
       <div class="flex">
           <div class="flex items-center mb-2 mr-4">
-              <input type="radio" id="themeLight" name="colorScheme" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
+              <input type="radio" id="themeLight" name="colorScheme" 
+              class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked onchange="reloadTheme()">
               <label for="themeLight" class="text-gray-600">Light ☀</label>
           </div>
           <div class="flex items-center mb-2">
-              <input type="radio" id="themeDark" name="colorScheme" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
+              <input type="radio" id="themeDark" name="colorScheme" 
+              class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" onchange="reloadTheme()">
               <label for="themeDark" class="text-gray-600">Dark 🌙</label>
           </div>
       </div>
@@ -224,6 +226,11 @@
       });
       fileReader.readAsDataURL(file);
     }
+
+    function reloadTheme() {
+      if (seed != null)
+        loadFromImg(seed);
+    } 
 
     upload.onclick = function () {
       const input = document.createElement("input");
