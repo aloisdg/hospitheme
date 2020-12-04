@@ -185,8 +185,9 @@
 --background: #efefef;
 --border-alt: #ccc;
 --text-muted: #70777f;
-${font ? `--font: ${font.css}` : ""};
 }
+
+${font ? `${font.css}` : ""};
 `;
 
       const template = themeClassic.checked ? templateClassicCss : templateReloadedCss
