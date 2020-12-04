@@ -9,7 +9,8 @@
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 115 115%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 115 115%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
 
   <style>
     .montserrat {
@@ -122,6 +123,16 @@
     };
 
     seed.addEventListener('load', () => loadFromImg(seed));
+
+    copy.onclick = () => {
+      const clipboard = navigator.clipboard || window.clipboard;
+      const snippet = document.querySelector("code").innerText.trim();
+
+      clipboard.writeText(snippet)
+        .then(() => { console.log('✔') })
+        .catch(() => { console.error('❌') })
+        .then(() => setTimeout(() => { console.error('...') }, 1000));
+    };
 
     //// const roomImage1 =
     //"https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?cs=srgb&dl=pexels-engin-akyurt-1579253.jpg&fm=jpg";
