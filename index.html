@@ -50,7 +50,7 @@
 
     <section class="mb-6 bg-gray-200 w-full overflow-auto h-48">
       <pre class="pl-6">
-        <code>
+        <code id="code">
 .accent {
   background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
   color: <span id="themeColor">black</span>;
@@ -93,6 +93,7 @@
       snippet</button>
   </main>
 
+  <script src="template-classic.js"></script>
   <script src="https://unpkg.com/node-vibrant@3.1.5/dist/vibrant.min.js"></script>
   <script>
     function arrayToRgb(r, g, b) {
@@ -111,9 +112,28 @@
 
   </script>
   <script>
+
+    function defineTheme(vibrant, lightMuted, themeBackground, themeColor) {
+      // const vibrantRed = vibrant.hsl.
+      const theme = `
+:root {
+  --vibrant: ${arrayToRgb(...vibrant.rgb)};
+  --vibrant-red: red;
+  --text-main: #323232;
+  --background-body: ${arrayToRgb(...lightMuted.rgb)};
+  --background: #efefef;
+  --background-alt: #f7f7f7;
+  --border-alt: #ccc;
+  --text-muted: #70777f;
+}
+
+`;
+
+      code.textContent = theme + templateClassicCss;
+    }
+
     function loadFromImg(img) {
       Vibrant.from(img).getPalette(function (err, palette) {
-
         Object.keys(palette).forEach((key, i) => {
           const child = paletteContainer.children[i];
           const rgb = palette[key].rgb;
@@ -121,13 +141,14 @@
           if (i === 0) {
             header.style.backgroundColor = arrayToRgb(...rgb);
             header.style.color = isTooLight(...rgb) ? 'black' : 'white';
-            themeBackground.textContent = arrayToRgb(...rgb);
-            themeColor.textContent = isItDark ? 'white' : 'black';
           }
           //child.textContent = key;
           child.classList.toggle("text-white", isItDark);
           child.style.backgroundColor = arrayToRgb(...palette[key].rgb);
         });
+        const themeBackground = arrayToRgb(...palette.Vibrant.rgb);
+        const themeColor = isItDark ? 'white' : 'black';
+        defineTheme(palette.Vibrant, palette.LightMuted, themeBackground, themeColor);
       });
     }
 
@@ -163,7 +184,7 @@
       clipboard.writeText(snippet)
         .then(() => { console.log('✔') })
         .catch(() => { console.error('❌') })
-        .then(() => setTimeout(() => { console.error('...') }, 1000));
+        .then(() => setTimeout(() => { console.error('clipboard timeout') }, 10000));
     };
 
     //// const roomImage1 =
