@@ -38,14 +38,7 @@
         class="blur absolute text-xl border border-white text-white hover:bg-gray-200 hover:text-gray-800 rounded px-4 py-2">upload
         picture</button>
     </section>
-    <section id="themeSelection" class="mb-6 flex items-center justify-center">
-      <form id="theme-form">
-        <input type="radio" value="auto" checked="" name="theme" id="theme-dark">
-        <label for="theme-dark">Dark theme 🌙</label>
-        <input type="radio" value="light" name="theme" id="theme-light">
-        <label for="theme-light">Light theme ☀</label>
-      </form>
-    </section>
+    
     <section id="paletteContainer" class="mb-6 grid grid-cols-6 w-full h-12">
       <div class="p-1 m-1" style="background-color: rgb(148, 76, 65);"></div>
       <div class="p-1 m-1" style="background-color: rgb(251, 248, 236);"></div>
@@ -53,6 +46,25 @@
       <div class="p-1 m-1" style="background-color: rgb(152, 110, 101);"></div>
       <div class="p-1 m-1" style="background-color: rgb(212, 192, 180);"></div>
       <div class="p-1 m-1 text-white" style="background-color: rgb(76, 56, 60);"></div>
+    </section>
+
+    <section id="themeSelection" class="mb-6 w-full">
+
+      <h2 class="font-bold text-xl mb-2 text-gray-700">Options</h2>
+
+      <div class="flex items-center justify-center mb-2">
+        <input type="radio" value="dark" checked="" name="theme" id="theme-dark" class="h-2 w-2 cursor-pointer align-top pr-2">
+        <label for="theme-dark" class="mr-4">Dark theme 🌙</label>
+        <input type="radio" value="light" name="theme" id="theme-light" class="h-2 w-2 cursor-pointer align-top pr-2">
+        <label for="theme-light">Light theme ☀</label>
+      </div>
+
+      <div class="flex items-center justify-center">
+        <input type="radio" value="classic" checked="" name="theme" id="theme-classic" class="h-2 w-2 cursor-pointer align-top pr-2">
+        <label for="theme-classic" class="mr-4">Classic theme ⚓</label>
+        <input type="radio" value="reloaded" name="theme" id="theme-reloaded" class="h-2 w-2 cursor-pointer align-top pr-2">
+        <label for="theme-reloaded">Reloaded theme 🚀</label>
+      </div>
     </section>
 
     <section class="mb-6 bg-gray-200 w-full overflow-auto h-48">
