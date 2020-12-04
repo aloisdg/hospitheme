@@ -8,7 +8,7 @@
 
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&family=Nerko+One&family=Orbitron&family=Press+Start+2P&family=Lexend+Deca&display=swap" rel="stylesheet">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 115 115%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
 
@@ -84,12 +84,12 @@
 
       <label class="block text-gray-700 font-light mb-2">Select custom font:</label>
       <div class="flex">
-        <select id="customFont" class="w-full border bg-white rounded px-3 py-2 outline-none">
-          <option class="py-1" value="NoCustomFont" selected>No custom font</option>
-          <option class="py-1" value="LexendDeca">Lexend Deca</option>
-          <option class="py-1" value="NerkoOne">Nerko One</option>
-          <option class="py-1" value="PressStart2P">Press Start 2P</option>
-          <option class="py-1" value="Orbitron">Orbitron</option>
+        <select id="customFont" class="w-full border bg-white rounded px-3 py-2 outline-none" onchange="reloadTheme()">
+          <option class="py-1" value="NoCustomFont" style="font-family: 'Roboto';" selected>No custom font</option>
+          <option class="py-1" value="LexendDeca" style="font-family: 'Lexend Deca';">Lexend Deca</option>
+          <option class="py-1" value="NerkoOne" style="font-family: 'Nerko One';">Nerko One</option>
+          <option class="py-1" value="PressStart2P" style="font-family: 'Press Start 2P';">Press Start 2P</option>
+          <option class="py-1" value="Orbitron" style="font-family: 'Orbitron';">Orbitron</option>
         </select>
       </div>
 
@@ -168,6 +168,7 @@ function handleFileSelect(evt) {
     function getFont() {
       if (customFont.value === 'PressStart2P') {
         return {
+          label: "'Press Start 2P', cursive",
           css: "body { font-family: 'Press Start 2P', cursive; }",
           link: "@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');"
         }
@@ -175,6 +176,7 @@ function handleFileSelect(evt) {
 
       if (customFont.value === 'NerkoOne') {
         return {
+          label: "Nerko One",
           css: "body { font-family: 'Nerko One', cursive; }",
           link: "@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');"
         }
@@ -182,6 +184,7 @@ function handleFileSelect(evt) {
 
       if (customFont.value === 'Orbitron') {
         return {
+          label: "Orbitron",
           css: "body { font-family: 'Orbitron', cursive; }",
           link: "@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');"
         }
@@ -189,6 +192,7 @@ function handleFileSelect(evt) {
 
       if (customFont.value === 'LexendDeca') {
         return {
+          label: "Lexend Deca",
           css: "body { font-family: 'Lexend Deca', cursive; }",
           link: "@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');"
         }
@@ -242,6 +246,8 @@ ${font ? `${font.css}` : ""};
           : arrayToHsl(palette.LightVibrant.hsl[0] * 360, 50, 88);
 
         const themeColor = themeDark.checked ? 'white' : 'black';
+        const font = getFont();
+      document.body.style.fontFamily = font ? font.label : "Roboto";
 
         document.body.style.backgroundColor = themeBackground;
         document.body.style.color = themeColor;
