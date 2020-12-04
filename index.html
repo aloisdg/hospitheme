@@ -21,6 +21,49 @@
       backdrop-filter: blur(7px);
     }
   </style>
+  <style>
+    .slider {
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 2rem;
+      width: 2rem;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  </style>
 </head>
 
 <body class="flex flex-col items-center">
@@ -52,61 +95,43 @@
 
       <h2 class="font-bold text-xl mb-2 text-gray-700">Options</h2>
 
-      <div class="flex items-center justify-center mb-2">
-        <input type="radio" value="dark" checked="" name="theme" id="themeDark"
-          class="h-2 w-2 cursor-pointer align-top pr-2">
-        <label for="themeDark" class="mr-4">Dark theme 🌙</label>
-        <input type="radio" value="light" name="theme" id="themeLight" class="h-2 w-2 cursor-pointer align-top pr-2">
-        <label for="themeLight">Light theme ☀</label>
+      <label class="block text-gray-700 font-light mb-2">Select color scheme:</label>
+      <div class="flex">
+          <div class="flex items-center mb-2 mr-4">
+              <input type="radio" id="themeLight" name="colorScheme" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
+              <label for="themeLight" class="text-gray-600">Light ☀</label>
+          </div>
+          <div class="flex items-center mb-2">
+              <input type="radio" id="themeDark" name="colorScheme" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
+              <label for="themeDark" class="text-gray-600">Dark 🌙</label>
+          </div>
       </div>
 
-      <div class="flex items-center justify-center">
-        <input type="radio" value="classic" checked="" name="theme" id="themeClassic"
-          class="h-2 w-2 cursor-pointer align-top pr-2">
-        <label for="themeClassic" class="mr-4">Classic theme ⚓</label>
-        <input type="radio" value="reloaded" name="theme" id="themeReloaded"
-          class="h-2 w-2 cursor-pointer align-top pr-2">
-        <label for="themeReloaded">Reloaded theme 🚀</label>
+      
+      <label class="block text-gray-700 font-light mb-2">Select booking engine style:</label>
+      <div class="flex">
+          <div class="flex items-center mb-2 mr-4">
+              <input type="radio" id="themeClassic" name="beStyle" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
+              <label for="themeClassic" class="text-gray-600">Classic ⚓</label>
+          </div>
+          <div class="flex items-center mb-2">
+              <input type="radio" id="themeReloaded" name="beStyle" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
+              <label for="themeReloaded" class="text-gray-600">Reloaded 🚀</label>
+          </div>
       </div>
+
     </section>
 
     <section id="codeContainer" class="mb-6 bg-gray-200 w-full overflow-auto h-48">
       <pre class="pl-6">
-        <code id="code">
-.accent {
+        <code id="code">.accent {
   background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
   color: <span id="themeColor">black</span>;
 }
 
 .background {
   background-color: white;
-}
-
-.accent {
-  background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
-  color: <span id="themeColor">black</span>;
-}
-
-.background {
-  background-color: white;
-}
-.accent {
-  background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
-  color: <span id="themeColor">black</span>;
-}
-
-.background {
-  background-color: white;
-}
-.accent {
-  background-color: <span id="themeBackground">rgb(148, 76, 65)</span>;
-  color: <span id="themeColor">black</span>;
-}
-
-.background {
-  background-color: white;
-}
-        </code>
+}</code>
       </pre>
     </section>
 
