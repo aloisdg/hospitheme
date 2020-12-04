@@ -1,3 +1,3 @@
 # Hotheme
 
-[live](https://aloisdg.gitlab-pages.availpro.com/hotheme)
+[live](https://aloisdg.gitlab-pages.availpro.com/hospitheme)
