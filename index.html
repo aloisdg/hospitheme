@@ -153,10 +153,10 @@
   --border-alt: #ccc;
   --text-muted: #70777f;
 }
-
 `;
 
-      code.textContent = theme + templateClassicCss;
+      const template = themeClassic.checked ? templateClassicCss : templateReloadedCss
+      code.textContent = theme + template;
     }
 
     function loadFromImg(img) {

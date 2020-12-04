@@ -1,4 +1,13 @@
-
+/*:root {
+  --vibrant: #ffed44;
+  --vibrant-red: red;
+  --text-main: #323232;
+  --background-body: #fff;
+  --background: #efefef;
+  --background-alt: #f7f7f7;
+  --border-alt: #ccc;
+  --text-muted: #70777f;
+}*/
 
 const templateReloadedCss = `
   /* Common */
