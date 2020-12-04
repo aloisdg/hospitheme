@@ -97,27 +97,42 @@
 
       <label class="block text-gray-700 font-light mb-2">Select color scheme:</label>
       <div class="flex">
-          <div class="flex items-center mb-2 mr-4">
-              <input type="radio" id="themeLight" name="colorScheme" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
-              <label for="themeLight" class="text-gray-600">Light ☀</label>
-          </div>
-          <div class="flex items-center mb-2">
-              <input type="radio" id="themeDark" name="colorScheme" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
-              <label for="themeDark" class="text-gray-600">Dark 🌙</label>
-          </div>
+        <div class="flex items-center mb-2 mr-4">
+          <input type="radio" id="themeLight" name="colorScheme"
+            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
+          <label for="themeLight" class="text-gray-600">Light ☀</label>
+        </div>
+        <div class="flex items-center mb-2">
+          <input type="radio" id="themeDark" name="colorScheme"
+            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
+          <label for="themeDark" class="text-gray-600">Dark 🌙</label>
+        </div>
       </div>
 
-      
       <label class="block text-gray-700 font-light mb-2">Select booking engine style:</label>
       <div class="flex">
-          <div class="flex items-center mb-2 mr-4">
-              <input type="radio" id="themeClassic" name="beStyle" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
-              <label for="themeClassic" class="text-gray-600">Classic ⚓</label>
-          </div>
-          <div class="flex items-center mb-2">
-              <input type="radio" id="themeReloaded" name="beStyle" class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
-              <label for="themeReloaded" class="text-gray-600">Reloaded 🚀</label>
-          </div>
+        <div class="flex items-center mb-2 mr-4">
+          <input type="radio" id="themeClassic" name="beStyle"
+            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2" checked>
+          <label for="themeClassic" class="text-gray-600">Classic ⚓</label>
+        </div>
+        <div class="flex items-center mb-2">
+          <input type="radio" id="themeReloaded" name="beStyle"
+            class="h-4 w-4 text-gray-700 px-3 py-3 border rounded mr-2">
+          <label for="themeReloaded" class="text-gray-600">Reloaded 🚀</label>
+        </div>
+      </div>
+
+
+      <label class="block text-gray-700 font-light mb-2">Select custom font:</label>
+      <div class="flex">
+        <select id="customFont" class="w-full border bg-white rounded px-3 py-2 outline-none">
+          <option class="py-1" value="NoCustomFont" selected>No custom font</option>
+          <option class="py-1" value="LexendDeca">Font 2</option>
+          <option class="py-1" value="NerkoOne">Font 3</option>
+          <option class="py-1" value="PressStart2P">Press Start 2P</option>
+          <option class="py-1" value="Orbitron">Orbitron</option>
+        </select>
       </div>
 
     </section>
@@ -164,24 +179,58 @@
   </script>
   <script>
 
+    function getFont() {
+      if (customFont.value === 'PressStart2P') {
+        return {
+          css: "font-family: 'Press Start 2P', cursive;",
+          link: "@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');"
+        }
+      }
+
+      if (customFont.value === 'NerkoOne') {
+        return {
+          css: "font-family: 'Nerko One', cursive;",
+          link: "@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');"
+        }
+      }
+
+      if (customFont.value === 'Orbitron') {
+        return {
+          css: "font-family: 'Orbitron', cursive;",
+          link: "@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');"
+        }
+      }
+
+      if (customFont.value === 'LexendDeca') {
+        return {
+          css: "font-family: 'Lexend Deca', cursive;",
+          link: "@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');"
+        }
+      }
+      
+      return null;
+    }
+
     function defineTheme(vibrant, themeBackground, themeBackgroundAlt, themeColor) {
       // const vibrantRed = vibrant.hsl.
-      const theme = `
-:root {
-  --vibrant: ${arrayToRgb(...vibrant.rgb)};
-  --vibrant-red: red;
-  --text-main: ${themeColor};
-  --background-body: ${themeBackground};
-  --background-alt: ${themeBackgroundAlt};
+      const font = getFont();
 
-  --background: #efefef;
-  --border-alt: #ccc;
-  --text-muted: #70777f;
+      const theme = `
+: root {
+--vibrant: ${arrayToRgb(...vibrant.rgb)};
+--vibrant-red: red;
+--text-main: ${themeColor};
+--background-body: ${themeBackground};
+--background-alt: ${themeBackgroundAlt};
+--background: #efefef;
+--border-alt: #ccc;
+--text-muted: #70777f;
+${font ? `--font: ${font.css}` : ""};
 }
 `;
 
       const template = themeClassic.checked ? templateClassicCss : templateReloadedCss
-      code.textContent = theme + template;
+      code.textContent = `<style>` + font.link + theme + template + `</style >`;
     }
 
     function loadFromImg(img) {
