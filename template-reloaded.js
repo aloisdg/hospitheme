@@ -13,7 +13,7 @@ const templateReloadedCss = `
   /* Common */
 
 .page-background {
-  color: #4a4a49;
+  color: var(--background-body);
 }
 
 h1, h2, h3, h4 {
@@ -68,7 +68,7 @@ h1, h2, h3, h4 {
 }
 
 .this-button._skin-4 {
-    background: #a2a2a2;
+    background: var(--text-main);
     color: white;
     padding: 6px 12px;
     text-transform: uppercase;
